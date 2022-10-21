@@ -1,5 +1,3 @@
-![alt text](https://i.imgur.com/cOj85Lg.jpg "Passbase Header")
-
 # Passbase Webhook Server Example
 
 This project shows you how you can catch a webhook in your Node.js Backend. It is built with [express](https://www.npmjs.com/package/express), [body-parser](https://www.npmjs.com/package/body-parser) and [cors](https://www.npmjs.com/package/cors).
