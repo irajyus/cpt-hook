@@ -10,10 +10,14 @@
   "author": "Mathias Klenk",
   "license": "ISC",
   "dependencies": {
+    "@slack/webhook": "^6.1.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "express": "^4.17.1"
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "micro": "^9.4.1",
+    "slack-notify": "^2.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

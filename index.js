@@ -1,33 +1,35 @@
+require("dotenv").config();
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const express = require("express");
-const webhookHelper = require("./webhookController");
 const app = express();
+const Slack = require("./slack");
+const crypto = require("crypto");
+
 const port = 5000;
 
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(bodyParser.text());
-app.use(cors());
 
-const processWebhook = (request) => {
-  const webhook = webhookHelper.decryptWebhookIfNeeded(request);
-  console.log(webhook);
-
-  switch (webhook.event) {
-    case "VERIFICATION_COMPLETED":
-      // Do logic here for VERIFICATION_COMPLETED event
-      break;
-    case "VERIFICATION_REVIEWED":
-      // Do logic here for VERIFICATION_REVIEWED event
-      break;
-    default:
-      console.log("Couldn't process webhook event");
+app.post("/", (req, res) => {
+  const payload = JSON.stringify(req.body);
+  console.log(typeof payload);
+  const xvs = req.get("x-vercel-signature");
+  const signature = crypto
+    .createHmac("sha1", process.env.OAUTH2_SECRET)
+    .update(payload)
+    .digest("hex");
+  const { name, inspectorUrl } = req.body.payload.deployment;
+  const event = { name, inspectorUrl };
+  if (signature === xvs) {
+    Slack.sendDeployErrorNotification(event);
+    // console.log(payload);
+    // console.log(xvs);
+    return res.json({
+      success: true,
+      event,
+    });
   }
-};
-
-app.post("/passbase-webhooks", (req, res) => {
-  processWebhook(req);
-  res.status(200).send("Success");
+  // res.status(200).send("Success");
 });
 
 app.listen(port, () => {
