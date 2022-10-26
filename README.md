@@ -33,6 +33,7 @@ For local development, you can use a service like e.g [ngrok](https://ngrok.com/
 ### Environment Variables
 
 SLACK_WEBHOOK_URL
+
 OAUTH2_SECRET (from Vercel integration console)
 
 ## Contributing
