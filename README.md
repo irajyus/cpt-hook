@@ -1,6 +1,6 @@
 # Webhook Server Starter
 
-A webhook server built with [express](https://www.npmjs.com/package/express) you can catch a webhook in your Node.js Backend. The specific use case in this repo is to catch a webhook body from Vercel and to send the message to a Slack incoming webhook url for posting in a channel.
+A webhook server built with [express](https://www.npmjs.com/package/express) which catches a webhook in your Node.js Backend. The specific use case in this repo is to catch a webhook body from Vercel and to send the message to a Slack incoming webhook url for posting in a channel.
 
 ## Installation
 
