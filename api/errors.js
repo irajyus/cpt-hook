@@ -30,6 +30,5 @@ router.post("/", (req, res) => {
   } else {
     res.status(400).send("Bad Request");
   }
-  res.end();
 });
 module.exports = router;
