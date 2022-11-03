@@ -4,8 +4,8 @@ const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
 const slack = require("slack-notify")(SLACK_WEBHOOK_URL);
 
 class Slack {
-  static sendDeployErrorNotification = async (event) => {
-    await slack.success({
+  static sendDeployErrorNotification = (event) => {
+    slack.success({
       text: "Build error",
       attachments: [
         {
