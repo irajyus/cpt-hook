@@ -15,7 +15,6 @@ router.post("/", (req, res) => {
     .createHmac("sha1", process.env.OAUTH2_SECRET)
     .update(payload)
     .digest("hex");
-  console.log(xvs, signature);
   const { name, inspectorUrl } = req.body.payload.deployment;
   const event = { name, inspectorUrl };
   if (signature === xvs && production) {
