@@ -21,6 +21,6 @@ router.post("/", (req, res, next) => {
       event,
     });
   }
-  next();
+  res.status(200);
 });
 export default router;
