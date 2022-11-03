@@ -21,6 +21,5 @@ router.post("/", (req, res) => {
       event,
     });
   }
-  res.end();
 });
 export default router;
