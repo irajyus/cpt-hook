@@ -18,4 +18,4 @@ class Slack {
     });
   };
 }
-export default Slack;
+module.exports = Slack;
