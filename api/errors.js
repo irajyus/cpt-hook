@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   console.log(req.body);
+  const production = req.body.target === "production";
+  console.log(production);
   const payload = JSON.stringify(req.body);
   console.log(typeof payload);
   const xvs = req.get("x-vercel-signature");
@@ -17,7 +19,7 @@ router.post("/", (req, res) => {
     .digest("hex");
   const { name, inspectorUrl } = req.body.payload.deployment;
   const event = { name, inspectorUrl };
-  if (signature === xvs) {
+  if (signature === xvs && production) {
     Slack.sendDeployErrorNotification(event);
     // console.log(payload);
     // console.log(xvs);
