@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   console.log(req.body);
-  const production = req.body.target === "production";
+  const production = req.body.payload.target === "production";
   console.log(production);
   const payload = JSON.stringify(req.body);
   console.log(typeof payload);
@@ -27,7 +27,9 @@ router.post("/", (req, res) => {
       success: true,
       event,
     });
+  } else {
+    res.status(400).send("Bad Request");
   }
-  // res.status(200).send("Success");
+  res.end();
 });
 module.exports = router;
