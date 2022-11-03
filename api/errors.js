@@ -4,7 +4,7 @@ import { sendDeployErrorNotification } from "../slack";
 import { createHmac } from "crypto";
 const router = Router();
 
-router.post("/", (req, res, next) => {
+router.post("/", (req, res) => {
   console.log(req.body);
   const production = req.body.payload.target === "production";
   const payload = JSON.stringify(req.body);
@@ -20,7 +20,8 @@ router.post("/", (req, res, next) => {
       success: true,
       event,
     });
+  } else {
+    res.end();
   }
-  res.status(200);
 });
 export default router;
