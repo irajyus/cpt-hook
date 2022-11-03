@@ -16,10 +16,11 @@ router.post("/", (req, res) => {
   const event = { name, inspectorUrl };
   if (signature === xvs && production) {
     sendDeployErrorNotification(event);
-    return res.status(200).json({
+    return res.json({
       success: true,
       event,
     });
   }
+  res.end();
 });
 export default router;
