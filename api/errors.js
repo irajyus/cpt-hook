@@ -6,8 +6,6 @@ const Slack = require("../slack");
 const crypto = require("crypto");
 const router = express.Router();
 
-const port = 5000;
-
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
