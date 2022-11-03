@@ -4,7 +4,7 @@ import { sendDeployErrorNotification } from "../slack";
 import { createHmac } from "crypto";
 const router = Router();
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   const production = req.body.payload.target === "production";
   const payload = JSON.stringify(req.body);
@@ -15,7 +15,7 @@ router.post("/", (req, res) => {
   const { name, inspectorUrl } = req.body.payload.deployment;
   const event = { name, inspectorUrl };
   if (signature === xvs && production) {
-    sendDeployErrorNotification(event);
+    await sendDeployErrorNotification(event);
     return res.json({
       success: true,
       event,
