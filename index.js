@@ -1,9 +1,9 @@
 require("dotenv").config();
-const express = require("express");
+import express, { json } from "express";
 const app = express();
-const errors = require("./api/errors");
+import errors from "./api/errors";
 
-app.use(express.json({ extended: false }));
+app.use(json({ extended: false }));
 app.use("/api/errors", errors);
 
 const port = 5000;
