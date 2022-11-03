@@ -20,9 +20,8 @@ router.post("/", (req, res, next) => {
       success: true,
       event,
     });
-  } else {
-    res.end();
   }
+  res.end();
   next();
 });
 export default router;
