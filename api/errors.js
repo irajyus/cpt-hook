@@ -1,12 +1,10 @@
 require("dotenv").config();
-const bodyParser = require("body-parser");
 const express = require("express");
-const app = express();
 const Slack = require("../slack");
 const crypto = require("crypto");
 const router = express.Router();
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
   const production = req.body.payload.target === "production";
   const payload = JSON.stringify(req.body);
