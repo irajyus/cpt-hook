@@ -6,4 +6,4 @@ import errors from "./api/errors";
 
 app.use(json({ extended: false }));
 app.use("/api/errors", errors);
-app.listen("api/errors");
+app.listen("/api/errors");
