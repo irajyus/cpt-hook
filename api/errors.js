@@ -6,9 +6,6 @@ const Slack = require("../slack");
 const crypto = require("crypto");
 const router = express.Router();
 
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 router.post("/", (req, res) => {
   console.log(req.body);
   const payload = JSON.stringify(req.body);
