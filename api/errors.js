@@ -1,8 +1,8 @@
 require("dotenv").config();
-import { Router } from "express";
 import { sendDeployErrorNotification } from "../slack";
 import { createHmac } from "crypto";
-const router = Router();
+const express = require("express");
+const router = express.Router();
 
 router.post("/", (req, res) => {
   console.log(req.body);
