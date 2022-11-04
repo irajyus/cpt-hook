@@ -1,9 +1,11 @@
 require("dotenv").config();
-import express, { json } from "express";
-const app = express();
-import slack from "slack-notify";
-import errors from "./api/errors";
+import express from "express";
+import bodyParser from "body-parser";
 
-app.use(json({ extended: false }));
-app.use("/api/errors", errors);
-app.listen("/api/errors");
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.post("/api/errors", (req, res) => {
+  console.log("Received Error:", req.body);
+  res.sendStatus(200);
+});
+app.listen("/");
