@@ -1,11 +1,9 @@
 require("dotenv").config();
 import express from "express";
+import errors from "./api/errors";
 import bodyParser from "body-parser";
-
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.post("/api/errors", (req, res) => {
-  console.log("Received Error:", req.body);
-  res.sendStatus(200);
-});
-app.listen("/");
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/api/errors", errors);
+app.listen("/api/errors");
